@@ -1,6 +1,6 @@
 deployAs:
   - name: processor
-    applicationType: event
+    applicationType: service
     endpoint: /
     scripts:
       postDeploy: npm install && npm run build && npm run connector:post-deploy
