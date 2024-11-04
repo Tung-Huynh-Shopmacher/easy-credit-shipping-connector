@@ -9,10 +9,14 @@ const config = readConfiguration();
 serviceRouter.post(
   '/',
   (req, res, next) => {
-    if (req.headers.authorization !== `Bearer ${config.basicAuth}`) {
-      logger.error('Unauthorized request', req);
+    if (
+      req.headers.authorization?.toLowerCase() !==
+      `Basic ${config.basicAuth}`.toLowerCase()
+    ) {
+      logger.error('Unauthorized request', req.headers);
       return res.status(401).send('Unauthorized');
     }
+
     next();
   },
   async (req, res, next) => {

@@ -16,6 +16,7 @@ export const readConfiguration = () => {
     scope: process.env.CTP_SCOPES,
     region: process.env.CTP_REGION as string,
     basicAuth: process.env.BASIC_AUTH as string,
+    paymentConnectorUrl: process.env.PAYMENT_CONNECTOR_URL as string,
   };
 
   const validationErrors = getValidateMessages(envValidators, envVars);

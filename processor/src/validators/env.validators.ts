@@ -2,6 +2,7 @@ import {
   optional,
   standardString,
   standardKey,
+  standardUrl,
   region,
 } from './helpers.validators';
 
@@ -48,6 +49,12 @@ const envValidators = [
   region(['region'], {
     code: 'InvalidRegion',
     message: 'Not a valid region.',
+    referencedBy: 'environmentVariables',
+  }),
+
+  standardUrl(['paymentConnectorUrl'], {
+    code: 'InvalidPaymentConnectorUrl',
+    message: 'Not a valid URL.',
     referencedBy: 'environmentVariables',
   }),
 ];

@@ -10,7 +10,7 @@
     "start:dev": "concurrently -k \"tsc --watch\" \"nodemon -q build/index.js\"",
     "build": "rimraf ./build && tsc",
     "lint": "eslint . --ext .ts",
-    "lint:fix": "prettier --write \"**/**/*.{ts,js,json}\" && eslint --fix src test",
+    "lint:fix": "prettier --write \"**/**/*.{ts,js,json}\" && eslint --fix src",
     "prettier": "prettier --write '**/*.{js,ts}'",
     "test": "jest --config jest.config.cjs",
     "test:watch": "jest --watch",

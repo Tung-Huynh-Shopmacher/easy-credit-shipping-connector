@@ -11,6 +11,9 @@ deployAs:
           description: commercetools Composable Commerce API region
           required: true
           default: "europe-west1.gcp"
+        - key: PAYMENT_CONNECTOR_URL
+          description: URL of the payment connector
+          required: true
       securedConfiguration:
         - key: CTP_PROJECT_KEY
           description: commercetools Composable Commerce project key
