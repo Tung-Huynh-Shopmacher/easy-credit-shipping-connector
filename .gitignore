@@ -1,0 +1,3 @@
+processor/build/
+processor/node_modules/
+processor/.env
