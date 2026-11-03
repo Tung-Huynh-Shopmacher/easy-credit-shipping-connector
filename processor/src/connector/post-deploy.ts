@@ -3,7 +3,8 @@ dotenv.config();
 
 import { createApiRoot } from '../client/create.client';
 import { assertError, assertString } from '../utils/assert.utils';
-import { createCustomObject } from './actions';
+import { createCustomObject, createOrderExtension } from './actions';
+import { readConfiguration } from '../utils/config.utils';
 
 const CONNECT_APPLICATION_URL_KEY = 'CONNECT_SERVICE_URL';
 
@@ -14,6 +15,7 @@ async function postDeploy(properties: Map<string, unknown>): Promise<void> {
 
   const apiRoot = createApiRoot();
   await createCustomObject(apiRoot, `${applicationUrl}`);
+  await createOrderExtension(apiRoot, `${applicationUrl}`, readConfiguration().basicAuth);
 }
 
 async function run(): Promise<void> {
