@@ -21,7 +21,8 @@ export const getAuthorizedECPaymentId = (
         EASYCREDIT_PAYMENT_METHOD &&
       !!payment.obj &&
       !!getSuccessTransaction(payment.obj) &&
-      // The extension also fires on later updates of a shipped order; capture only once.
+      // The extension also fires on later updates of a shipped order; capture only once. A Charge in any state
+      // counts, so a capture that later fails does not retry (and block) every following order update.
       !hasCharge(payment.obj)
   );
 
@@ -29,10 +30,7 @@ export const getAuthorizedECPaymentId = (
 };
 
 const hasCharge = (payment: Payment): boolean =>
-  !!payment.transactions?.some(
-    (transaction) =>
-      transaction.type === 'Charge' && transaction.state !== 'Failure'
-  );
+  !!payment.transactions?.some((transaction) => transaction.type === 'Charge');
 
 const getSuccessTransaction = (payment: Payment): Transaction | undefined => {
   return payment.transactions?.find(

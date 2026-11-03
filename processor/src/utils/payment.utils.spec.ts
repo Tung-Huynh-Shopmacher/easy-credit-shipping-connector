@@ -20,7 +20,7 @@ describe('getAuthorizedECPaymentId', () => {
 
   it('does not capture twice when a shipped order is updated again', () => {
     expect(getAuthorizedECPaymentId([payment('bill', 'easycredit', 'Success', [{ type: 'Charge', state: 'Pending' }])])).toBeNull();
-    expect(getAuthorizedECPaymentId([payment('bill', 'easycredit', 'Success', [{ type: 'Charge', state: 'Failure' }])])).toBe('bill');
+    expect(getAuthorizedECPaymentId([payment('bill', 'easycredit', 'Success', [{ type: 'Charge', state: 'Failure' }])])).toBeNull();
   });
 
   it('returns null without an authorized easyCredit payment', () => {
